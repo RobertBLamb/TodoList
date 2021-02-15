@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from .models import List
 from .forms import ListForm
 from django.contrib import messages
+from django.contrib.auth.models import User
+
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-
 
 def home(request):
     if request.method == 'POST':
@@ -17,7 +18,7 @@ def home(request):
             return render(request, 'userLists/home.html', {'all_items': all_items})
 
     else:
-        all_items = List.objects.all
+        all_items = List.objects.filter(author=User.objects.get(username=request.user))
         return render(request, 'userLists/home.html', {'all_items': all_items})
 
 
@@ -32,18 +33,18 @@ def about(request):
     return render(request, 'userLists/about.html')
 
 
-def cross_off(request, list_id):
+def cross_off(request, list_id, freq):
     task = List.objects.get(pk=list_id)
     task.completed = True
     task.save()
-    return redirect('List-home')
+    return redirect(freq)
 
 
-def uncross(request, list_id):
+def uncross(request, list_id, freq):
     task = List.objects.get(pk=list_id)
     task.completed = False
     task.save()
-    return redirect('List-home')
+    return redirect(freq)
 
 
 def edit(request, list_id):
