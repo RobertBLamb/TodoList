@@ -12,19 +12,21 @@
 {% endif %}
  <table class="table table=bordered">
     {% for entry in all_items %}
+     {% if entry.repeating == 'Weekly' %}
         {% if entry.completed %}
             <tr class="table-secondary">
-                <td class="striker"><a href="{% url 'edit' entry.id %}">{{ entry.task }}, {{ entry.repeating }}</a></td>
+                <td class="striker"><a href="{% url 'edit' entry.id %}">{{ entry.task }}</a></td>
                 <td><center><a href="{% url 'uncross' entry.id %}">Uncross</a></center></td>
                 <td><center><a href="{% url 'delete' entry.id %}">Delete</a></center></td>
             </tr>
         {% else %}
             <tr>
-                <td><a href="{% url 'edit' entry.id %}">{{ entry.task }}, {{ entry.repeating }}</a></td>
+                <td><a href="{% url 'edit' entry.id %}">{{ entry.task }}</a></td>
                 <td><center><a href="{% url 'cross_off' entry.id %}">Cross Off</a></center></td>
                 <td><center><a href="{% url 'delete' entry.id %}">Delete</a></center></td>
             </tr>
         {% endif %}
+     {% endif %}
     {% endfor %}
 </table>
 

@@ -21,7 +21,7 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'List-home' %}">Todo List</a>
+          <a class="navbar-brand mr-4" href="{% url 'List-home' %}">Home</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,13 +31,13 @@
                 <form class="form-inline my-3 my-lg-0" method ="POST">
                    {% csrf_token %}
                     <input type="search" class="form-control mr-sm-2"  aria-label="Search" placeholder="Item to add" name="task">
-<!--                    <a class="nav-item nav-link">Frequency</a>-->
-<!--                        <select class="selectpicker">-->
-<!--                          <option>Once</option>-->
-<!--                          <option>Daily</option>-->
-<!--                          <option>Weekly</option>-->
-<!--                          <option>Monthly</option>-->
-<!--                        </select>-->
+                    <a class="nav-item nav-link">Frequency</a>
+                        <select class="custom-select mr-sm-2" type="search" aria-label="Search", name="repeating">
+                          <option>Once</option>
+                          <option>Daily</option>
+                          <option>Weekly</option>
+                          <option>Monthly</option>
+                        </select>
                     <button type="submit" class="btn btn-primary my-2 my-sm-0">Add to List</button>
                 </form>
 
@@ -69,19 +69,17 @@
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
+          <div class="content-section"><center>
+              <h3>Our Sidebar</h3>
+              <p class='text-muted'>Which list would you like to view?
               <ul class="list-group">
-                <center>
-                    <li class="list-group-item list-group-item-light">One Time List</li>
-                    <li class="list-group-item list-group-item-light">Daily List</li>
-                    <li class="list-group-item list-group-item-light">Weekly List</li>
-                    <li class="list-group-item list-group-item-light">Monthly List</li>
-                </center>
+                    <a class="list-group-item list-group-item-light" href="{% url 'once' %}">One Time List</a>
+                    <a class="list-group-item list-group-item-light" href="{% url 'daily' %}">Daily List</a>
+                    <a class="list-group-item list-group-item-light" href="{% url 'weekly' %}">Weekly List</a>
+                    <a class="list-group-item list-group-item-light" href="{% url 'monthly' %}">Monthly List</a>
               </ul>
             </p>
-          </div>
+          </center></div>
         </div>
       </div>
     </main>
@@ -92,3 +90,4 @@
 
 </body>
 </html>
+
