@@ -15,17 +15,15 @@
 
         {% if entry.completed %}
             <tr class="table-secondary">
-                <td class="striker"><a href="{% url 'edit' entry.id %}">{{ entry.task }}, {{ entry.repeating }}</a></td>
+                <td class="striker"><a href="{% url 'edit' entry.id %}">{{ entry.task }}</a></td>
                 <td><center><a href="{% url 'uncross' entry.id 'List-home' %}">Uncross</a></center></td>
                 <td><center><a href="{% url 'delete' entry.id %}">Delete</a></center></td>
-                <td>{{ entry }}</td>
             </tr>
         {% else %}
             <tr>
-                <td><a href="{% url 'edit' entry.id %}">{{ entry.task }}, {{ entry.repeating }}</a></td>
+                <td><a href="{% url 'edit' entry.id %}">{{ entry.task }}</a></td>
                 <td><center><a href="{% url 'cross_off' entry.id 'List-home' %}">Cross Off</a></center></td>
                 <td><center><a href="{% url 'delete' entry.id %}">Delete</a></center></td>
-                <td>{{ entry.author }}</td>
             </tr>
         {% endif %}
     {% endfor %}
