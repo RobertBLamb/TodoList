@@ -15,7 +15,7 @@ def home(request):
         if form.is_valid():
             form.save()
             all_items = List.objects.filter(author=User.objects.get(username=request.user))
-            messages.success(request,('Item add!'))
+            messages.success(request,('Task add!'))
             return render(request, 'userLists/home.html', {'all_items': all_items})
 
     else:
@@ -26,7 +26,7 @@ def home(request):
 def delete(request, list_id):
     task = List.objects.get(pk=list_id)
     task.delete()
-    messages.success(request, ('Item is kill...'))
+    messages.success(request, ('Task has been removed'))
     return redirect('List-home')
 
 
@@ -56,7 +56,7 @@ def edit(request, list_id):
 
         if form.is_valid():
             form.save()
-            messages.success(request,('Item Change!'))
+            messages.success(request,('Task Change!'))
             return redirect('List-home')
 
     else:
@@ -72,7 +72,7 @@ def once(request):
         if form.is_valid():
             form.save()
             all_items = List.objects.filter(author=User.objects.get(username=request.user))
-            messages.success(request,('Item add!'))
+            messages.success(request,('Task add!'))
             return render(request, 'userLists/once.html', {'all_items': all_items})
 
     else:
@@ -88,7 +88,7 @@ def daily(request):
         if form.is_valid():
             form.save()
             all_items = List.objects.filter(author=User.objects.get(username=request.user))
-            messages.success(request,('Item add!'))
+            messages.success(request,('Task add!'))
             return render(request, 'userLists/daily.html', {'all_items': all_items})
 
     else:
@@ -104,7 +104,8 @@ def weekly(request):
         if form.is_valid():
             form.save()
             all_items = List.objects.filter(author=User.objects.get(username=request.user))
-            messages.success(request,('Item add!'))
+            messages.success(request,('Task add!'))
+            messages.success(request,)
             return render(request, 'userLists/weekly.html', {'all_items': all_items})
 
     else:
@@ -120,7 +121,7 @@ def monthly(request):
         if form.is_valid():
             form.save()
             all_items = List.objects.filter(author=User.objects.get(username=request.user))
-            messages.success(request,('Item add!'))
+            messages.success(request,('Task add!'))
             return render(request, 'userLists/monthly.html', {'all_items': all_items})
 
     else:

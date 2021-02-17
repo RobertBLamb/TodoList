@@ -1,15 +1,6 @@
 {% extends "userLists/base.html" %}
 {% block content %}
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-warning alert-dismissible" role="alert">
-            <button class="close" data-dismiss="alert">
-                <small><sup>x</sup></small>
-            </button>
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
+
  <table class="table table=bordered">
     {% for entry in all_items %}
      {% if entry.repeating == 'weekly' %}
